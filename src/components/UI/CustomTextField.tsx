@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import TextField from '@mui/material/TextField';
 
 interface CustomTextFieldProps {
@@ -11,6 +11,8 @@ interface CustomTextFieldProps {
     disabled?: boolean;
     error?: boolean;
     helperText?: string;
+    autoFocus?: boolean;
+    inputRef?: RefObject<HTMLInputElement | undefined>;
 }
 
 export const CustomTextField: React.FC<CustomTextFieldProps> = ({
@@ -23,6 +25,8 @@ export const CustomTextField: React.FC<CustomTextFieldProps> = ({
     disabled = false,
     error = false,
     helperText = '',
+    autoFocus = false,
+    inputRef
 }) => {
     return (
         <TextField
@@ -36,6 +40,8 @@ export const CustomTextField: React.FC<CustomTextFieldProps> = ({
             error={error}
             helperText={helperText}
             variant="outlined"
+            inputRef={inputRef}
+            autoFocus={autoFocus}
         />
     );
 };

@@ -1,34 +1,17 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import {ButtonProps} from '@mui/material';
+import Button from "@mui/material/Button";
+import { ButtonProps } from "@mui/material";
+import colors from "@/theme/colors";
 
-interface CustomButtonProps extends Pick<ButtonProps, 'onClick' | 'disabled' | 'size'> {
-    children: React.ReactNode;
-    variant?: ButtonProps['variant'];
-    color?: ButtonProps['color'];
-    type?: 'button' | 'submit' | 'reset';
-    fullWidth?: boolean;
-}
-
-export const CustomButton: React.FC<CustomButtonProps> = ({
-  children,
-  onClick,
-  variant = 'contained',
-  color = 'primary',
-  disabled = false,
-  size = 'medium',
-  type = 'button',
-  fullWidth
-}) => {
+export const CustomButton = ({ children, sx, ...props }: ButtonProps) => {
     return (
         <Button
-            type={type}
-            variant={variant}
-            color={color}
-            onClick={onClick}
-            disabled={disabled}
-            size={size}
-            fullWidth={fullWidth}
+            sx={{
+                backgroundColor: props.variant === "contained" ? colors.primary : "transparent",
+                color: props.variant === "contained" ? colors.textSecondary : colors.primary,
+                borderColor: props.variant === "outlined" ? colors.primary : "transparent",
+                ...sx,
+            }}
+            {...props}
         >
             {children}
         </Button>
